@@ -3,9 +3,9 @@ const router = express.Router();
 const authController = require("../controllers/authController.js");
 const { requireSignin, isAdmin } = require("../middlewares/authMiddleware");
 require("../strategies/local-strategy");
-require("../strategies/google-strategy.js");
 require("../strategies/facebook-strategy.js");
 require("../strategies/discord-strategy.js");
+require("../strategies/google-strategy.js");
 require("../strategies/twitter-strategy.js");
 const passport = require("passport");
 
@@ -46,7 +46,6 @@ router.get("/google/callback", (req, res, next) => {
 
 router.get("/twitter/callback", (req, res, next) => {
   passport.authenticate("twitter", (err, user, info) => {
-    console.log("🚀 ~ passport.authenticate ~ err:", err);
     if (err) {
       return res.redirect(
         `http://localhost:3000/sign-in?error=${encodeURIComponent(err.message)}`

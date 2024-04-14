@@ -5,7 +5,6 @@ require("dotenv").config();
 const Cart = require("../models/Cart");
 const authMiddleware = require("../middlewares/authMiddleware");
 const User = require("../models/User");
-// const Order = require("../models/Order");
 
 const gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
