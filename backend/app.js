@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
-require("dotenv").config();
 const session = require("express-session");
+require("dotenv").config();
 
 // Middlewares
 app.use(
@@ -45,6 +45,9 @@ app.use(
 );
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  res.send("hello");
+});
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/images", imageRouter);
@@ -56,9 +59,6 @@ app.use("/api/orders", orderRoute);
 app.use("/api/coupon", couponRoute);
 app.use("/api/address", addressRoute);
 app.use("/api/checkout", braintreeRoute);
-app.get("/", (req, res) => {
-  res.send("hello");
-});
 
 mongoose
   .connect(process.env.MONGO_URL)
